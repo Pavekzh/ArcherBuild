@@ -58,6 +58,7 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/Web.loader.js";
       var config = {
+        token: "test_auth_token1",
         dataUrl: buildUrl + "/Web.data",
         frameworkUrl: buildUrl + "/Web.framework.js",
         codeUrl: buildUrl + "/Web.wasm",
@@ -106,6 +107,7 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
+          unityInstance.SendMessage("Startup","TakeToken",config.token);
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
